@@ -54,4 +54,9 @@ function addNewEvent(){
 		<? $eventList = getEventList(); ?>
 		<? include("index.html") ?>
 	</body>
-</html>
+<? 
+	function getEventList(){
+		$eventList = json_decode(file_get_contents("http://local.lets-do-lunch.com:8080/events"));	
+		echo ($eventList);
+	}
+?>
