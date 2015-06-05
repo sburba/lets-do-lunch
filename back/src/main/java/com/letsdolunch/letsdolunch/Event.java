@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
-    public long id;
-    public List<String> people;
-    public List<String> comments;
-    public String location;
-    public String time;
+    public final long id;
+    public final List<String> people;
+    public final List<String> comments;
+    public final String location;
+    public final String time;
 
     public Event(long id, String person, String location, String time) {
         this.id = id;
