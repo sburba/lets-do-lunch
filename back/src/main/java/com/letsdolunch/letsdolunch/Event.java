@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
-    public final long id;
-    public final List<String> people;
-    public final String location;
-    public final String time;
+    public long id;
+    public List<String> people;
+    public List<String> comments;
+    public String location;
+    public String time;
 
     public Event(long id, String person, String location, String time) {
         this.id = id;
@@ -15,6 +16,7 @@ public class Event {
         this.people.add(person);
         this.location = location;
         this.time = time;
+        this.comments = new ArrayList<>();
     }
 
     @Override
