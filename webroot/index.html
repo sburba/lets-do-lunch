@@ -1,7 +1,12 @@
 <script type="text/javascript">
 $(document).ready(function () {
-	$(".like").click(function () {
-		$(".signup").toggle();
+	$(".like").click(function (evt) {
+		$(".signup" + evt.target.id).toggle();
+	});
+
+	$(":submit").click(function(event) {
+		alert(event.target.name);
+		$("#signup").val(this.name);
 	});
 });
 </script>
@@ -9,34 +14,30 @@ $(document).ready(function () {
 <div class="container">
 	<h2>Who wants to have...</h2>
     <ul class="items">
+    <? $counter = 0; ?>
+    <? foreach($eventList as $event){ ?>
     	<li>
         	<span class="details">
-        		Lunch at <strong>Moe's</strong> at <strong>12:30</strong>
+        		Lunch at <strong><?=$event->{'location'}?></strong> at <strong><?=$event->{'time'}?></strong>
             </span>
             <div class="numLikes">
-            	<span class="number">5</span>
-            	<a class="like" href="#"><span class="icon icon-like2"></span></a>
+            	<span class="number"><?=count($event->{'people'}) ?></span>
+            	<button class="like" id="<?=$counter ?>"><span class="icon icon-like2"></span></button>
             </div>
             
-            <div class="signup">
+            <div class="signup<?=$counter ?>" style="display: none">
             	<span class="arrow"></span>
-                <form>
+                <form onsubmit="addPersonToExistingEvent(evt)" id="<?=$counter ?>">
                     <label for="name">Your Name</label>
-                    <input id="name" type="text" />
-                </form>
+                    <input id="name<?=$counter ?>" type="text"/>
+                    <input id="id<?=$counter ?>" type="hidden" value="<?=$event->{'id'} ?>">
                 <br />
-                <button class="floatR">Sign Up</button>
+                <button class="floatR" type="submit" name="<?=$counter ?>">Sign Up</button>
+                 </form>
             </div>
         </li>
-        <li>
-        	<span class="details">
-        		Lunch at <strong>Moe's</strong> at <strong>12:30</strong>
-            </span>
-            <div class="numLikes">
-            	<span class="number">0</span>
-            	<a class="like" href="#"><span class="icon icon-like2"></span></a>
-            </div>
-        </li>
+        <? $counter++; ?>
+     <? } ?>
     </ul>
     
     <h2>Create Lunch Event</h2>

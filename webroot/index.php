@@ -1,7 +1,6 @@
 <? 
 	function getEventList(){
-		$eventList = json_decode(file_get_contents("http://local.lets-do-lunch.com:8080/events"));	
-		echo ($eventList);
+		return json_decode(file_get_contents("http://local.lets-do-lunch.com:8080/events"));	
 	}
 ?>
 <!doctype html>
@@ -12,34 +11,47 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 <script>
 function createNewEvent(){
+	nameE = $("#organizer").val();
+	locationE = $("#restaurant").val();
+	timeE = $("#time").val();
+	
 	$.ajax( {
 		type: 'POST',
 		async: false,
-	    url: "http://local.lets-do-lunch.com:8080/events",
-	    data: {  name:  $("#organizer").val() ,
-	    	location: $("#restaurant").val(),
-	    	time: $("#time") };,
-	    success: function(data) {
-		    addNewEvent(JSON.parse(data));
+	    url: "http://localhost:8080/events",
+	    data: { name:  nameE ,
+	    	location: locationE,
+	    	time: timeE },
+	    success: function() {
+		    addNewEvent(nameE, locationE, timeE);
+	    },
+		error: function() {
 	    }
 	});
 }
 
-function addPersonToExistingEvent(){
+function addPersonToExistingEvent(evt){
+	number = $(".signup" + evt.target.id).val();
+	alert(evt.target.id);
+	var nameE = $("#name" + number).val();
 	$.ajax( {
 		type: 'POST',
 		async: false,
-	    url: "http://local.lets-do-lunch.com:8080/events/" + $("#divId"),
-	    data: $("#name").val(),
+	    url: "http://local.lets-do-lunch.com:8080/events/" + number,
+	    data: "name=" + nameE,
 	    success: function(data) {
-		    updateLikeCounter(JSON.parse(data));
+		    //updateLikeCounter();
 	    }
 	});
+}
+
+function addNewEvent(){
+	$(".container").append('<li> <span class="details"> Lunch at <strong>' + locationE + '</strong> at <strong>' + timeE + '</strong> </span> <div class="numLikes"> <span class="number">1</span> <a class="like" href="#"><span class="icon icon-like2"></span></a> </div> <div class="signup"> <span class="arrow"></span> <form onsubmit="addPersonToExistingEvent()"> <label for="name">Your Name</label> <input id="name1" type="text" /> <br /> <button class="floatR" type="submit">Sign Up</button> </form> </div> </li>');
 }
 </script>
 </head>
 	<body>
-		<?getEventList(); ?>
+		<? $eventList = getEventList(); ?>
 		<? include("index.html") ?>
 	</body>
 </html>
