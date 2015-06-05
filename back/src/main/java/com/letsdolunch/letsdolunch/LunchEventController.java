@@ -23,9 +23,16 @@ public class LunchEventController {
         event.people.add(name);
     }
 
+    @RequestMapping(value = "/comments", method = RequestMethod.POST)
+    void addComment(@RequestParam int id, @RequestParam String comment) {
+        Event event = events.get(id);
+        event.comments.add(comment);
+    }
+
     @RequestMapping(value = "/events", method = RequestMethod.POST)
-    void createEvent(@RequestParam String location, @RequestParam String name, @RequestParam String time) {
+    Event createEvent(@RequestParam String name, @RequestParam String location, @RequestParam String time) {
         Event newEvent = new Event(events.size(), name, location, time);
         events.add(newEvent);
+        return newEvent;
     }
 }
