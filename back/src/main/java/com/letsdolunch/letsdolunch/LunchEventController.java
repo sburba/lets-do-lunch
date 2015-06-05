@@ -1,6 +1,8 @@
 package com.letsdolunch.letsdolunch;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,22 +19,24 @@ public class LunchEventController {
         return events;
     }
 
+    @RequestMapping(value = "/events", method = RequestMethod.POST)
+    ResponseEntity<?> createEvent(@RequestParam String name, @RequestParam String location, @RequestParam String time) {
+        Event newEvent = new Event(events.size(), name, location, time);
+        events.add(newEvent);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @RequestMapping(value = "/events/{id}", method = RequestMethod.POST)
-    void addPerson(@PathVariable int id, @RequestParam String name) {
+    ResponseEntity<?> addPerson(@PathVariable int id, @RequestParam String name) {
         Event event = events.get(id);
         event.people.add(name);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/comments", method = RequestMethod.POST)
-    void addComment(@RequestParam int id, @RequestParam String comment) {
+    ResponseEntity<?> addComment(@RequestParam int id, @RequestParam String comment) {
         Event event = events.get(id);
         event.comments.add(comment);
-    }
-
-    @RequestMapping(value = "/events", method = RequestMethod.POST)
-    Event createEvent(@RequestParam String name, @RequestParam String location, @RequestParam String time) {
-        Event newEvent = new Event(events.size(), name, location, time);
-        events.add(newEvent);
-        return newEvent;
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
