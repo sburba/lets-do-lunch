@@ -1,9 +1,59 @@
-<!doctype html>
-<head>
-<meta charset="utf-8">
-<title>Lets-do-Lunch</title>
-</head>
-<body>
-This is the Let's do lunch project!
-</body>
-</html>
+<script type="text/javascript">
+$(document).ready(function () {
+	$(".like").click(function () {
+		$(".signup").toggle();
+	});
+});
+</script>
+
+<div class="container">
+	<h2>Who wants to have...</h2>
+    <ul class="items">
+    	<li>
+        	<span class="details">
+        		Lunch at <strong>Moe's</strong> at <strong>12:30</strong>
+            </span>
+            <div class="numLikes">
+            	<span class="number">5</span>
+            	<a class="like" href="#"><span class="icon icon-like2"></span></a>
+            </div>
+            
+            <div class="signup">
+            	<span class="arrow"></span>
+                <form>
+                    <label for="name">Your Name</label>
+                    <input id="name" type="text" />
+                </form>
+                <br />
+                <button class="floatR">Sign Up</button>
+            </div>
+        </li>
+        <li>
+        	<span class="details">
+        		Lunch at <strong>Moe's</strong> at <strong>12:30</strong>
+            </span>
+            <div class="numLikes">
+            	<span class="number">0</span>
+            	<a class="like" href="#"><span class="icon icon-like2"></span></a>
+            </div>
+        </li>
+    </ul>
+    
+    <h2>Create Lunch Event</h2>
+    <form class="createItem">
+    
+    	<label for="organizer">Your Name</label>
+        <input class="lg" id="organizer" placeholder="first, last, nickname, whatever" type="text" />
+        
+        <br />
+        
+    	<label for="restaurant">Lunch at</label>
+        <input class="lg" id="restaurant" placeholder="Restaurant" type="text" />
+        
+        <label for="time">at</label>
+        <input class="sm" id="time" placeholder="time" type="text" />
+		<button>Create</button>
+
+    </form>
+    
+</div>

@@ -1,0 +1,191 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* site container */
+body {
+	background: #636363;
+}
+.container {
+	background: #e5e5e5;
+	box-sizing: border-box;
+	margin: 30px auto 0 auto;
+	padding: 30px;
+	width: 600px;
+}
+
+/* quick classes */
+.clear {
+	clear: both;
+	display: block;
+}
+.floatR {
+	float: right;
+}
+.floatL {
+	float: left;
+}
+
+/* icons */
+@font-face {
+	font-family: 'IconSweets-Deluxe';
+	src:url('fonts/IconSweets-Deluxe.eot');
+	src:url('fonts/IconSweets-Deluxe.eot?#iefix') format('embedded-opentype'),
+		url('fonts/IconSweets-Deluxe.woff') format('woff'),
+		url('fonts/IconSweets-Deluxe.ttf') format('truetype'),
+		url('fonts/IconSweets-Deluxe.svg#IconSweets-Deluxe') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.icon {
+	font-family: 'IconSweets-Deluxe';
+	speak: none;
+	font-size: 1.3em;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	vertical-align: middle;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-like2:before {
+	content: "\e0b0";
+}
+
+/* fonts */
+body {
+	color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 1.4;	
+}
+h2 {
+	color: #008b71;
+	margin: 20px 0 10px 0;
+}
+h2:first-child {
+	margin-top: 0;
+}
+
+/* forms */
+label {
+	display: inline-block;
+	vertical-align: middle;
+}
+input[type="text"] {
+	background: #fff;
+	border: solid 1px #ccc;
+	border-radius: 3px;
+	color: #333;
+	display: inline-block;
+	font-size: 14px;
+	font-style: normal;
+	padding: 5px 7px;
+	vertical-align: middle;
+}	
+button {
+	background-color: #0faa79;
+	background-image: -webkit-linear-gradient(#3bba95, #0faa79); /* Safari */
+	background-image: -moz-linear-gradient(#3bba95, #0faa79); /* Firefox */
+	background-image: linear-gradient(#3bba95, #0faa79);
+	border: solid 1px #099c72;
+	border-radius: 3px;
+	color: #fff;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px 15px;
+	vertical-align: middle;
+}
+button:hover {
+	background-color: #0faa79;
+	background-image: -webkit-linear-gradient(#0faa79, #099166); /* Safari */
+	background-image: -moz-linear-gradient(#0faa79, #099166); /* Firefox */
+	background-image: linear-gradient(#0faa79, #099166);
+	border: solid 1px #099166;
+	cursor: pointer;
+}
+
+/***************/
+/* lunch items */
+
+.items {
+	display: block;
+	margin: 0 0 30px 0;
+	padding: 0;
+	position: relative;
+}
+.items > li {
+	background: #fff;
+	border: solid 1px #ccc;
+	box-shadow: 0 0 4px #ccc;
+	box-sizing: border-box;
+	display: block;
+	list-style: none;
+	margin: 0 0 5px 0;
+	padding: 15px;
+}
+
+.numLikes {
+	float: right;
+	font-size: 16px;
+	margin-top: -2px;
+}
+	.number {
+		display: inline-block;
+		font-weight: bold;
+		vertical-align: middle;
+	}
+	.like {
+		display: inline-block;
+		text-decoration: none;
+		vertical-align: middle;
+	}
+		.like .icon {
+			color: #08af7a;
+			display: inline-block;
+			font-size: 1.7em;
+			margin-top: -3px;
+		}
+		.like .icon:hover {
+			color: #027e57;
+		}
+		
+/* signup form */
+.signup {
+	background: #fff;
+	border: solid 1px #ccc;
+	box-shadow: 0 0 4px #ccc;
+	display: none;
+	padding: 10px;
+	position: absolute;
+	top: 30px;
+	right: 15px;
+}
+.signup .arrow {
+	border: solid 10px transparent;
+	border-bottom: solid 10px #ccc;
+	display: block;
+	position: absolute;
+	top: -20px;
+	right: 15px;
+	margin-left: -5px;
+	width: 0px;
+	height: 0px;
+}
+		
+/* create a lunch form */
+.createItem {
+	background: #fff;
+	border: solid 1px #ccc;
+	box-shadow: 0 0 4px #ccc;
+	box-sizing: border-box;
+	display: block;
+	padding: 15px 15px;
+}
+input.lg {
+	width: 200px;
+}
+input.sm {
+	width: 75px;
+}
