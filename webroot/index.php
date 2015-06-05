@@ -9,14 +9,15 @@
 <meta charset="utf-8">
 <title>Lets-do-Lunch</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 <script>
 function createNewEvent(){
 	$.ajax( {
 		type: 'POST',
 		async: false,
 	    url: "http://local.lets-do-lunch.com:8080/events",
-	    data: {  name:  $("#name").val() ,
-	    	location: $("#location").val(),
+	    data: {  name:  $("#organizer").val() ,
+	    	location: $("#restaurant").val(),
 	    	time: $("#time") };,
 	    success: function(data) {
 		    addNewEvent(JSON.parse(data));
