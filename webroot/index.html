@@ -3,56 +3,74 @@ $(document).ready(function () {
 	$(".like").click(function () {
 		$(".signup").toggle();
 	});
+	$("#signup").click(function() {
+		$(".signup").hide();
+	});
+	$(".leaveComment").click(function() {
+		$(".toggleArea").slideToggle();
+	});
 });
 </script>
 
 <div class="container">
 	<h2>Who wants to have...</h2>
     <ul class="items">
+    
     	<li>
         	<span class="details">
-        		Lunch at <strong>Moe's</strong> at <strong>12:30</strong>
+        		Lunch at Moe's at 12:30
             </span>
             <div class="numLikes">
             	<span class="number">5</span>
             	<a class="like" href="#"><span class="icon icon-like2"></span></a>
             </div>
             
+            <div class="attending">
+            	<strong>Attending:</strong> Bill H., Joe Shaefer, Billy, JimBob
+            </div>    
+            
+            <div class="hr"></div>
+
+            <form>
+            	<label class="link leaveComment" for="comment">Leave a Comment &#9660;</label>
+                <div class="toggleArea">
+                	<textarea id="submit"></textarea>
+                	<button class="btn-subtle floatR marginT" id="commentSubmit" type="submit">Submit Comment</button>
+                	<div class="clear"></div>
+                </div>
+            </form>
+            
             <div class="signup">
             	<span class="arrow"></span>
                 <form>
-                    <label for="name">Your Name</label>
-                    <input id="name" type="text" />
+                    <input class="lg" id="name" placeholder="Your Name" type="text" />
+                    <button id="signup" type="submit">Sign Up</button>
                 </form>
-                <br />
-                <button class="floatR">Sign Up</button>
             </div>
         </li>
-        <li>
-        	<span class="details">
-        		Lunch at <strong>Moe's</strong> at <strong>12:30</strong>
-            </span>
-            <div class="numLikes">
-            	<span class="number">0</span>
-            	<a class="like" href="#"><span class="icon icon-like2"></span></a>
-            </div>
-        </li>
+        
     </ul>
     
     <h2>Create Lunch Event</h2>
     <form class="createItem" onsubmit="createNewEvent()">
     
-    	<label for="organizer">Your Name</label>
+    	<label class="special" for="organizer">Name</label>
         <input class="lg" id="organizer" placeholder="first, last, nickname, whatever" type="text" />
         
         <br />
         
-    	<label for="restaurant">Lunch at</label>
-        <input class="lg" id="restaurant" placeholder="Restaurant" type="text" />
+    	<label class="marginT special" for="restaurant">Place</label>
+        <input class="marginT lg" id="restaurant" placeholder="Restaurant" type="text" />
         
-        <label for="time">at</label>
-        <input class="sm" id="time" placeholder="time" type="text" />
-		<button type="submit">Create</button>
+        <label class="marginT default" for="time">at</label>
+        <input class="marginT sm" id="time" placeholder="time" type="text" />
+        <br />
+        
+        <label class="marginT special" for="message" style="vertical-align: top;">Comment</label>
+        <textarea class="marginT"></textarea>
+        
+		<button class="floatR" type="submit">Create</button>
+        <div class="clear"></div>
 
     </form>
     
