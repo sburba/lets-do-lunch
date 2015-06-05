@@ -11,9 +11,9 @@ import java.util.List;
 @EnableAutoConfiguration
 public class LunchEventController {
     private ArrayList<Event> events = new ArrayList<>();
-    
+
     @RequestMapping(value = "/events", method = RequestMethod.GET)
-    List<Event> events() {
+    public @ResponseBody List<Event> events() {
         return events;
     }
 
