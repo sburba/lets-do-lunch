@@ -1,0 +1,325 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* site container */
+body {
+    background: #636363;
+}
+
+.container {
+    background: #e5e5e5;
+    box-sizing: border-box;
+    margin: 30px auto 0 auto;
+    padding: 30px;
+    width: 600px;
+}
+
+/* quick classes */
+
+.clear {
+    clear: both;
+    display: block;
+}
+.floatR {
+    float: right;
+}
+
+.floatL {
+    float: left;
+}
+
+.marginT {
+    margin-top: 10px;
+}
+
+.hr {
+    margin: 10px 0;
+    background: #e8e8e8;
+    height: 1px;
+}
+
+/* icons */
+
+.icon {
+    font-family: 'IconSweets-Deluxe';
+    speak: none;
+    font-size: 1.3em;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'IconSweets-Deluxe';
+    src: url('fonts/IconSweets-Deluxe.eot');
+    src: url('fonts/IconSweets-Deluxe.eot?#iefix') format('embedded-opentype'),
+    url('fonts/IconSweets-Deluxe.woff') format('woff'),
+    url('fonts/IconSweets-Deluxe.ttf') format('truetype'),
+    url('fonts/IconSweets-Deluxe.svg#IconSweets-Deluxe') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon-like2:before {
+    content: "\e0b0";
+}
+
+/* fonts */
+
+body {
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+}
+a,
+.link {
+    color: #029969;
+}
+
+a:hover,
+.link:hover {
+    color: #01c889;
+    cursor: pointer;
+}
+
+h2 {
+    color: #555;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 20px 0 5px 0;
+}
+
+h2:first-child {
+    margin-top: 0;
+}
+
+/* forms */
+
+label {
+    display: inline-block;
+    vertical-align: middle;
+}
+input[type="text"] {
+    background: #fff;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    color: #333;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    padding: 5px 7px;
+    vertical-align: middle;
+}
+
+input.lg {
+    width: 200px;
+}
+
+input.sm {
+    width: 75px;
+}
+
+textarea {
+    background: #fff;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #333;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    height: 75px;
+    width: 100%;
+}
+
+button {
+    background-color: #0faa79;
+    background-image: -webkit-linear-gradient(#3bba95, #0faa79); /* Safari */
+    background-image: -moz-linear-gradient(#3bba95, #0faa79); /* Firefox */
+    background-image: linear-gradient(#3bba95, #0faa79);
+    border: solid 1px #099c72;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 15px;
+    vertical-align: middle;
+}
+
+button:hover {
+    background-color: #0faa79;
+    background-image: -webkit-linear-gradient(#0faa79, #099166); /* Safari */
+    background-image: -moz-linear-gradient(#0faa79, #099166); /* Firefox */
+    background-image: linear-gradient(#0faa79, #099166);
+    border: solid 1px #099166;
+    cursor: pointer;
+}
+
+.btn-subtle {
+    background-color: #ccc;
+    background-image: -webkit-linear-gradient(#e0e0e0, #ccc); /* Safari */
+    background-image: -moz-linear-gradient(#e0e0e0, #ccc); /* Firefox */
+    background-image: linear-gradient(#e0e0e0, #ccc);
+    border: solid 1px #b1b1b1;
+    color: #333;
+}
+
+.btn-subtle:hover {
+    background-color: #999;
+    background-image: -webkit-linear-gradient(#ccc, #b1b1b1); /* Safari */
+    background-image: -moz-linear-gradient(#ccc, #b1b1b1); /* Firefox */
+    background-image: linear-gradient(#ccc, #b1b1b1);
+    border: solid 1px #999;
+}
+
+/* junk heap */
+
+.toggleArea {
+    display: none;
+}
+/***************/
+
+/* lunch items */
+.items {
+    display: block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+#restaurantPicker {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+}
+
+.items > li {
+    background: #fff;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    box-shadow: 0 0 4px #ccc;
+    box-sizing: border-box;
+    display: block;
+    list-style: none;
+    margin: 0 0 5px 0;
+    padding: 15px;
+    position: relative;
+}
+
+.details {
+    color: #444;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 0 3px 0;
+}
+
+.numLikes {
+    float: right;
+    font-size: 16px;
+    margin-top: -2px;
+}
+
+.number {
+    display: inline-block;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.like {
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.like .icon {
+    color: #08af7a;
+    display: inline-block;
+    font-size: 1.7em;
+    margin-top: -3px;
+}
+
+.like .icon:hover {
+    color: #027e57;
+}
+
+.attending {
+    color: #777;
+    font-size: 13px;
+}
+
+.attending strong {
+    font-weight: normal;
+}
+
+/* signup form */
+.signup {
+    background: #fff;
+    border: solid 2px #099c72;
+    border-radius: 10px;
+    box-shadow: 0 0 7px #999;
+    display: none;
+    padding: 10px;
+    position: absolute;
+    top: 30px;
+    right: -15px;
+
+}
+
+.signup .arrow {
+    border: solid 10px transparent;
+    border-bottom: solid 10px #099c72;
+    display: block;
+    position: absolute;
+    top: -20px;
+    right: 15px;
+    margin-left: -5px;
+    width: 0px;
+    height: 0px;
+}
+
+/* create a lunch form */
+.createItem {
+    background: #fff;
+    border: solid 1px #ccc;
+    box-shadow: 0 0 4px #ccc;
+    box-sizing: border-box;
+    display: block;
+    padding: 15px 15px;
+}
+
+.createItem label.special {
+    font-weight: bold;
+    text-align: right;
+    width: 75px;
+}
+
+.createItem textarea {
+    display: inline-block;
+    width: 400px;
+}
+
+.alert {
+    background-color: #FCF8E3;
+    border: 1px solid #FBEED5;
+    border-radius: 4px 4px 4px 4px;
+    font-size: 14px;
+    padding: 8px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    color: #C09853;
+    list-style: none;
+    margin: 0 0 20px 0;
+}
+
+.alert-fail {
+    display: none;
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    color: #B94A48;
+}
