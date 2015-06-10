@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Configuration
 public class AppConfig extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter {
