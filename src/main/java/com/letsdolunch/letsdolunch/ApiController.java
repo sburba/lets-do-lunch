@@ -21,10 +21,9 @@ import java.util.stream.Collectors;
 public class ApiController {
     private List<Event> events = new ArrayList<>();
 
-    @RequestMapping(value = "/events", method = RequestMethod.GET)
-    public
     @ResponseBody
-    List<Event> events() {
+    @RequestMapping(value = "/events", method = RequestMethod.GET)
+    public List<Event> events() {
         removeYesterdaysEvents();
         return events;
     }
