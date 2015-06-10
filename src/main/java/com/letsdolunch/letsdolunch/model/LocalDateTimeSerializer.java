@@ -1,6 +1,5 @@
 package com.letsdolunch.letsdolunch.model;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
@@ -17,7 +16,7 @@ public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
     }
 
     @Override
-    public void serialize(LocalDateTime value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonGenerationException {
+    public void serialize(LocalDateTime value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
         jgen.writeString(value.format(formatter));
     }
 }
