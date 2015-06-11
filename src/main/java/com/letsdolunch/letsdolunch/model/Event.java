@@ -1,90 +1,98 @@
 package com.letsdolunch.letsdolunch.model;
 
-import org.springframework.util.StringUtils;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.auto.value.AutoValue;
+import com.google.common.collect.ImmutableList;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import javax.validation.constraints.NotNull;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+import java.util.Optional;
 
-public class Event {
-    public final long id;
-    public final String location;
-    public final LocalDateTime time;
-    public final List<String> people;
-    public final List<String> comments;
+import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Strings.isNullOrEmpty;
 
-    public Event(long id, String location, LocalDateTime time, List<String> people, List<String> comments) {
-        this.id = id;
-        this.location = location;
-        this.time = time;
-        this.people = people;
-        this.comments = comments;
+@AutoValue
+public abstract class Event {
+    @JsonProperty("id")
+    public abstract Optional<Long> id();
+    @JsonProperty("location")
+    public abstract String location();
+    @JsonProperty("time")
+    public abstract OffsetDateTime time();
+    @JsonProperty("people")
+    public abstract ImmutableList<String> people();
+    @JsonProperty("comments")
+    public abstract ImmutableList<String> comments();
+
+    Event(){}
+
+    @JsonCreator
+    private static Event create(@JsonProperty("location") String location, @JsonProperty("time") OffsetDateTime time,
+                                @JsonProperty("creator") String creator) {
+        return builder().location(location).time(time).addPerson(creator).build();
     }
+
+    abstract Builder toBuilder();
 
     public static Builder builder() {
-        return new Builder();
+        return new AutoValue_Event.Builder()
+                .id(Optional.empty())
+                .people(ImmutableList.of())
+                .comments(ImmutableList.of());
     }
 
-    public static class Builder {
-        private long id;
-        private String location;
-        private LocalDateTime time;
+    public Event withId(long id) {
+        return toBuilder().id(id).build();
+    }
+
+    public Event withPerson(String person) {
+        return toBuilder().addPerson(person).build();
+    }
+
+    public Event withComment(String comment) {
+        return toBuilder().addComment(comment).build();
+    }
+
+    @AutoValue.Builder
+    public static abstract class Builder {
         private List<String> people = new ArrayList<>();
         private List<String> comments = new ArrayList<>();
 
+        public abstract Builder id(Optional<Long> id);
+        public abstract Builder location(String location);
+        public abstract Builder time(OffsetDateTime time);
+        public abstract Builder people(ImmutableList<String> people);
+        public abstract Builder comments(ImmutableList<String> comments);
+        public abstract Event autoBuild();
+
+        abstract ImmutableList<String> people();
+        abstract ImmutableList<String> comments();
+
         public Builder id(long id) {
-            this.id = id;
-            return this;
+            return id(Optional.of(id));
         }
 
-        public Builder location(String location) {
-            this.location = location;
-            return this;
-        }
-
-        public Builder time(String timeString) throws DateTimeParseException {
-            LocalTime time = guessIntendedTime(timeString);
-            this.time = time.atDate(LocalDate.now());
-            return this;
-        }
-
-        public Builder addPerson(String name) {
+        public Builder addPerson(@NotNull String name) {
+            checkArgument(!isNullOrEmpty(name), "Name cannot be null or empty");
             this.people.add(name);
             return this;
         }
 
-        public Builder addComment(String comment) {
-            if (!StringUtils.isEmpty(comment)) {
-                this.comments.add(comment);
-            }
+        public Builder addComment(@NotNull String comment) {
+            checkArgument(!isNullOrEmpty(comment), "Comment cannot be null or empty");
+            this.comments.add(comment);
             return this;
         }
 
-        public LocalTime guessIntendedTime(String timeStr) {
-            timeStr = timeStr.replaceAll("\\s+", "").toUpperCase(Locale.US);
-            // If they actually specify AM or PM then they meant it
-            if (timeStr.contains("AM") || timeStr.contains("PM")) {
-                return LocalTime.parse(timeStr, DateTimeFormatter.ofPattern("h:mma"));
-            }
-
-            // If they didn't specify am or pm, force it to be between 8am and 8pm
-            LocalTime time = LocalTime.parse(timeStr, DateTimeFormatter.ofPattern("H:mm"));
-            if (time.isBefore(LocalTime.of(8, 0))) {
-                return time.plusHours(12);
-            } else if (time.isAfter(LocalTime.of(20, 0))) {
-                return time.minusHours(12);
-            } else {
-                return time;
-            }
-        }
-
         public Event build() {
-            return new Event(id, location, time, people, comments);
+            people.addAll(people());
+            comments.addAll(comments());
+            people(ImmutableList.copyOf(people));
+            comments(ImmutableList.copyOf(comments));
+            return autoBuild();
         }
     }
 }

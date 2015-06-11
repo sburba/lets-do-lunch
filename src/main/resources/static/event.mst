@@ -1,7 +1,7 @@
 <li class="lunchItem" data-id="{{id}}">
     <div style="position: relative;">
         <span class="details">
-            Lunch at {{location}} at {{time}}
+            Lunch at {{location}} at {{prettyTime}}
         </span>
 
         <div class="numLikes">

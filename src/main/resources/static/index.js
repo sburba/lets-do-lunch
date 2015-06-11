@@ -116,19 +116,18 @@ function createNewEvent(event) {
     hideError();
     var rawLocation = $("#location").val();
     var location = rawLocation.substr(0, rawLocation.indexOf(','));
-    var time = $("#time").val();
+    var time = parseTime($("#time").val());
     var name = $("#organizer").val();
-    var comment = "";
     event.target.reset();
     $.ajax({
         url: apiUrl + "/events",
         method: "POST",
-        data: {
+        contentType: "application/json",
+        data: JSON.stringify({
             location: location,
-            time: time,
-            name: name,
-            comment: comment
-        },
+            time: time.toJSON(),
+            creator: name
+        }),
         success: function (data, status) {
             addEvent(data);
         },
@@ -151,6 +150,7 @@ function showError() {
 }
 
 function renderEvent(template, event) {
+    event.prettyTime = moment(event.time, moment.ISO_8601).format("h:mma zz");
     return Mustache.render(template, event);
 }
 
@@ -163,8 +163,20 @@ function addEvent(event) {
             firstEvent.slideDown("slow");
             registerEventClickHandlers();
         }
-
     );
+}
+
+function parseTime(timeString) {
+    timeString = timeString.replace(/\s+/g, '');
+    var time = moment(timeString, "h:mma");
+    var amPmSpecified = /am|pm/i.test(timeString);
+    var now = moment()
+    if (amPmSpecified) {
+        return time;
+    } else if (time.isBefore(now)) {
+        //TODO: Be more intelligent about assuming which time they meant.
+        return time.add(12, 'hours');
+    }
 }
 
 function initializeMap() {
@@ -182,7 +194,7 @@ function initializeMap() {
     var time = document.getElementById('time');
     var submit = document.getElementById('submit-event');
 
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function (position) {
         map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
     });
 
@@ -200,7 +212,7 @@ function initializeMap() {
         anchorPoint: new google.maps.Point(0, -29)
     });
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
         infowindow.close();
         marker.setVisible(false);
         var place = autocomplete.getPlace();
