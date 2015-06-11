@@ -1,4 +1,5 @@
 var apiUrl = "http://localhost:8080/api/v1";
+var autoCompletedPlaceName = null;
 
 $(document).ready(function () {
     initializeMap();
@@ -9,6 +10,7 @@ $(document).ready(function () {
 
 function registerClickHandlers() {
     $("#new-event-form").submit(createNewEvent);
+    $("#location").on("change", onLocationInputChange);
     $(document).on("click", function (event) {
         var isInSignupContainer = $(event.target).closest('.signup').length;
         var isInLikeButton = $(event.target).closest('.numLikes').length;
@@ -19,6 +21,10 @@ function registerClickHandlers() {
             }
         }
     });
+}
+
+function onLocationInputChange(event) {
+    autoCompletedPlaceName = null;
 }
 
 function registerEventClickHandlers() {
@@ -114,8 +120,11 @@ function findEventForId(eventId) {
 
 function createNewEvent(event) {
     hideError();
-    var rawLocation = $("#location").val();
-    var location = rawLocation.substr(0, rawLocation.indexOf(','));
+    var location = autoCompletedPlaceName;
+    // If there's no autocompleted value, just use the raw data from the input field
+    if (!location) {
+        location = $("#location").val();
+    }
     var time = parseTime($("#time").val());
     var name = $("#organizer").val();
     event.target.reset();
@@ -247,6 +256,7 @@ function initializeMap() {
             ].join(' ');
         }
 
+        autoCompletedPlaceName = place.name;
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
         infowindow.open(map, marker);
     });
