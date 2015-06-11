@@ -170,7 +170,7 @@ function parseTime(timeString) {
     timeString = timeString.replace(/\s+/g, '');
     var time = moment(timeString, "h:mma");
     var amPmSpecified = /am|pm/i.test(timeString);
-    var now = moment()
+    var now = moment();
     if (amPmSpecified) {
         return time;
     } else if (time.isBefore(now)) {
@@ -217,7 +217,7 @@ function initializeMap() {
         marker.setVisible(false);
         var place = autocomplete.getPlace();
         if (!place.geometry) {
-            window.alert("Autocomplete's returned place contains no geometry");
+            //If we don't have any geometry, we can't really do anything else
             return;
         }
 
