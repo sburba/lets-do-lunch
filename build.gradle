@@ -33,8 +33,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
-# DataSource settings: set here your own configurations for the database 
-# connection.
 spring {
     datasource {
         url = jdbc:#{systemEnvironment['DATASOURCE_URL']}
@@ -43,19 +41,12 @@ spring {
     }
 
     jpa {
-        # Show or not log for each sql query
         show-sql = true
 
-        # Hibernate ddl auto (create, create-drop, update)
         hibernate.ddl-auto = update
 
-        # Naming strategy
         hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
 
-        # Use spring.jpa.properties.* for Hibernate native properties (the prefix is
-        # stripped before adding them to the entity manager)
-
-        # The SQL dialect makes Hibernate generate better SQL for the chosen database.
         properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
     }
 }
