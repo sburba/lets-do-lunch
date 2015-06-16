@@ -33,24 +33,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
-spring {
-    datasource {
-        url = jdbc:#{systemEnvironment['DATASOURCE_URL']}
-        username = #{systemEnvironment['DATASOURCE_USER']}
-        password = #{systemEnvironment['DATASOURCE_PASS']}
-    }
-
-    jpa {
-        show-sql = true
-
-        hibernate.ddl-auto = update
-
-        hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
-
-        properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
-    }
-}
-
 task stage(type: Copy, dependsOn: [clean, build]) {
     from jar.archivePath
     into project.rootDir 
