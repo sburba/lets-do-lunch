@@ -1,4 +1,5 @@
 .gradle
 .idea
+gradle.properties
 *.iml
 build
