@@ -8,19 +8,19 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="users")
+@Table(name="user")
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
+  private int id;
 
   @NotNull
   private String name;
 
   public User() { }
 
-  public User(long id) { 
+  public User(int id) { 
     this.id = id;
   }
 
@@ -28,11 +28,11 @@ public class User {
     this.name = name;
   }
 
-  public long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
