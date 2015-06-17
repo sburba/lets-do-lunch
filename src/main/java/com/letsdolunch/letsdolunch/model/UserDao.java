@@ -5,7 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 
 @Transactional
-public interface UserDao extends CrudRepository<User, Long> {
+public interface UserDao extends CrudRepository<User, Int> {
 
   /**
    * This method is not implemented and its working code will be

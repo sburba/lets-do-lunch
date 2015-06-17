@@ -44,7 +44,7 @@ public class UserController {
    */
   @RequestMapping("/delete")
   @ResponseBody
-  public String delete(long id) {
+  public String delete(int id) {
     try {
       User user = new User(id);
       userDao.delete(user);
@@ -85,7 +85,7 @@ public class UserController {
    */
   @RequestMapping("/update")
   @ResponseBody
-  public String updateUser(long id, String name) {
+  public String updateUser(int id, String name) {
     try {
       User user = userDao.findOne(id);
       user.setName(name);
