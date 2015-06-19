@@ -1,0 +1,35 @@
+spring:
+  profiles: production
+server:
+  port: 80
+datasource:
+  url: jdbc:${DATASOURCE_URL}
+  username: ${DATASOURCE_USER}
+  password: ${DATASOURCE_PASS}
+  driverClassName: com.mysql.jdbc.Driver
+jpa:
+  show-sql: false
+  hibernate:
+    ddl-auto: update
+    naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+
+---
+
+spring:
+  profiles: development
+server:
+  port: 8080
+datasource:
+  url: jdbc:h2:mem:db1
+  driverClassName: org.h2.Driver
+jpa:
+  show-sql: true
+  hibernate:
+    ddl-auto: create-drop
+    naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
