@@ -185,6 +185,8 @@ function parseTime(timeString) {
     } else if (time.isBefore(now)) {
         //TODO: Be more intelligent about assuming which time they meant.
         return time.add(12, 'hours');
+    } else {
+        return time;
     }
 }
 
