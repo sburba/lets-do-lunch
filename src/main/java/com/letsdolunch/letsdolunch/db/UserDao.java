@@ -1,7 +1,8 @@
-package com.letsdolunch.letsdolunch.model;
+package com.letsdolunch.letsdolunch.db;
 
 import javax.transaction.Transactional;
 
+import com.letsdolunch.letsdolunch.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 @Transactional

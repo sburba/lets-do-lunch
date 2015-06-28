@@ -1,5 +1,7 @@
 package com.letsdolunch.letsdolunch.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,14 +10,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @JsonProperty
   private int id;
 
   @NotNull
+  @JsonProperty
   private String name;
 
   public User() { }

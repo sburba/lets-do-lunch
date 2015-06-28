@@ -1,7 +1,7 @@
 package com.letsdolunch.letsdolunch;
 
 import com.letsdolunch.letsdolunch.model.User;
-import com.letsdolunch.letsdolunch.model.UserDao;
+import com.letsdolunch.letsdolunch.db.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
